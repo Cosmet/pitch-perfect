@@ -13,9 +13,13 @@ import '../css/_video.scss'
  */
 let myPeerId;
 let theirPeerId;
-// const peer = new Peer({ key: 'lwjd5qra8257b9' });
 
-const peer = new Peer({host: 'pitch-perfect-peerjs.herokuapp.com', secure: true, port: 443, path: '/'});
+const peer = new Peer({
+  host: 'pitch-perfect-peerjs.herokuapp.com',
+  path: '/',
+  secure: true,
+  port: 443,
+});
 
 peer.on('open', (id) => {
   myPeerId = id;
