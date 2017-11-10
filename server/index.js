@@ -11,7 +11,7 @@ const sessionStore = new SequelizeStore({ db })
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
-const ExpressPeerServer = require('peer').ExpressPeerServer
+// const ExpressPeerServer = require('peer').ExpressPeerServer
 module.exports = app
 
 /**
@@ -53,15 +53,15 @@ const createApp = () => {
   app.use(passport.session())
 
   //
-  const options = {
-    debug: true
-  }
+  // const options = {
+  //   debug: true
+  // }
 
-  const peerServer = require('http').createServer(app);
+  // const peerServer = require('http').createServer(app);
 
-  app.use('/peerjs', ExpressPeerServer(peerServer, options));
+  // app.use('/peerjs', ExpressPeerServer(peerServer, options));
 
-  peerServer.listen(9000);
+  // peerServer.listen(9000);
 
   // auth and api routes
   app.use('/auth', require('./auth'))
