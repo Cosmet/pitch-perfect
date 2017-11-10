@@ -1,0 +1,19 @@
+.video-feed {
+  position: absolute;
+  top: 0;
+  left: calc(50% - 320px);
+}
+video {
+  position: absolute;
+  border: 0.5rem solid white;
+  border-radius: 5px;
+  height: 480px;
+  width: 640px;
+  background: rgba(255, 255, 255, 0.5)
+}
+
+.small-video {
+  position: absolute;
+  height: 120px;
+  width: 160px;
+}

@@ -1,0 +1,85 @@
+@import './_variables.scss';
+@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+
+.main {
+  height: 100vh;
+  background: $primary;
+}
+
+.hero {
+  margin: 10rem;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  padding: 0 10rem;
+  background: $primary;
+  border-bottom: 1px solid $primary-dark;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  flex-basis: 85%;
+
+  h1 {
+    margin-left: 1rem;
+    font-size: 3rem;
+    color: white;
+    font-family: Comfortaa, sans-serif;
+  }
+}
+
+.nav-links {
+  display: flex;
+  align-self: center;
+  flex-basis: 15%;
+
+  a {
+    font-size: 2rem;
+    color: white;
+  }
+
+  a:hover {
+    color: $primary-darker;
+  }
+}
+
+
+.logo-css {
+  position: relative;
+  margin-right: 6em;
+
+  span {
+    display: block;
+    bottom: 0px;
+    width: 9px;
+    height: 5px;
+    border-radius: 10px;
+    background: $primary;
+    position: absolute;
+    animation: audio-wave 1.5s infinite ease-in-out;
+  }
+
+  span:nth-child(2) {
+  left: 11px;
+  animation-delay: 0.2s;
+  }
+
+  span:nth-child(3) {
+  left: 22px;
+  animation-delay: 0.4s;
+  }
+
+  span:nth-child(4) {
+  left: 33px;
+  animation-delay: 0.6s;
+  }
+
+  span:nth-child(5) {
+  left: 44px;
+  animation-delay: 0.8s;
+  }
+}
+
