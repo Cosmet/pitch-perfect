@@ -1,6 +1,12 @@
 @import './_variables.scss';
 @import url('https://fonts.googleapis.com/css?family=Comfortaa');
 
+button {
+  background: none;
+  border: none;
+  outline: none;
+}
+
 .main {
   height: 100vh;
   background: $primary;
@@ -13,6 +19,7 @@
 nav {
   display: flex;
   align-items: center;
+  position: relative;
   padding: 0 10rem;
   background: $primary;
   border-bottom: 1px solid $primary-dark;
@@ -21,7 +28,6 @@ nav {
 .logo {
   display: flex;
   align-items: center;
-  flex-basis: 85%;
 
   h1 {
     margin-left: 1rem;
@@ -32,9 +38,8 @@ nav {
 }
 
 .nav-links {
-  display: flex;
-  align-self: center;
-  flex-basis: 15%;
+  position: absolute;
+  right: 10rem;
 
   a {
     font-size: 2rem;

@@ -1,6 +1,12 @@
+$primary-lighter: #BCDFFC;
+$primary-light: #89C6F8;
 $primary: #60b0f4;
-$primary-dark: $primary / 1.2;
-$primary-darker: $primary / 1.5;
+$primary-dark: #3B9CED;
+$primary-darker: #1583DE;
+$secondary: rgb(255, 89, 89);
+$secondary-darker: rgb(223, 41, 41);
+
+$font-family: 'Comfortaa', sans-serif;;
 
 @keyframes audio-wave {
   0% {height:5px;transform:translateY(0px);background: white;}
@@ -9,4 +15,13 @@ $primary-darker: $primary / 1.5;
 /*translateY makes Y axis move down to give the effect that it is growing from the center*/
   50% {height:5px;transform:translateY(0px);background:white;}
   100% {height:5px;transform:translateY(0px);background: white;}
+}
+
+@-webkit-keyframes rotation {
+  from {
+      -webkit-transform: rotate(0deg);
+  }
+  to {
+      -webkit-transform: rotate(359deg);
+  }
 }

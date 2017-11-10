@@ -32,11 +32,12 @@ const Main = (props) => {
           isLoggedIn
             ? <div className="nav-links">
               {/* The navbar will show these links after you log in */}
-              <Link to="/home">Home</Link>
+              <Link to="/connect">Connect</Link>
               <a href="#" onClick={handleClick}>Logout</a>
             </div>
             : <div className="nav-links">
               {/* The navbar will show these links before you log in */}
+              <Link to="/connect">Connect</Link>
               <Link to="/login">Login</Link>
               <Link to="/signup">Sign Up</Link>
             </div>

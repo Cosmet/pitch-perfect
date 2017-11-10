@@ -1,6 +1,16 @@
+@import './_variables.scss';
+.video {
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: $primary;
+  height: 100vh;
+  width: 100vw;
+}
+
 .video-feed {
   position: absolute;
-  top: 0;
+  top: 5px;
   left: calc(50% - 320px);
 }
 video {
@@ -16,4 +26,32 @@ video {
   position: absolute;
   height: 120px;
   width: 160px;
+  z-index: 5;
+}
+
+#stop-video-btn {
+  position: absolute;
+  top: 0rem;
+  right: 2rem;
+  font-size: 10rem;
+  color: $secondary-darker;
+  text-shadow: 0.5rem 0.5rem 1rem $primary-darker;
+
+  :hover {
+    color: $secondary;
+  }
+}
+
+#connect-video-btn {
+  font-size: 3rem;
+  font-family: $font-family;
+  color: $primary;
+  background: white;
+  border-radius: 5px;
+  padding: 1rem;
+
+
+  .fa-spinner {
+    -webkit-animation: rotation 2s infinite linear;
+  }
 }

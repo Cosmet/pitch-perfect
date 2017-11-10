@@ -35,7 +35,7 @@ class Routes extends Component {
             {/* Displays our Login component as a fallback */}
             <Route path="/login" component={Login} />
           </Switch>}
-          <Route path="/" component={Video} />
+          <Route path="/connect" component={Video} />
         </Main>
       </Router>
     )
