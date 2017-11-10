@@ -1424,7 +1424,7 @@ var RTCPeerConnection = require('./adapter').RTCPeerConnection;
 var util = {
   noop: function() {},
 
-  CLOUD_HOST: '0.peerjs.com',
+  CLOUD_HOST: 'https://0.peerjs.com',
   CLOUD_PORT: 9000,
 
   // Browsers that need chunking:
