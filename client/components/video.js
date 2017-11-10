@@ -15,7 +15,7 @@ let myPeerId;
 let theirPeerId;
 // const peer = new Peer({ key: 'lwjd5qra8257b9' });
 
-const peer = new Peer('abc1778', {host: 'pitch-perfect-practice.herokuapp.com', path: '/a'});
+const peer = new Peer('abc1778', {host: 'pitch-perfect-practice.herokuapp.com', path: '/'});
 
 peer.on('open', (id) => {
   myPeerId = id;
