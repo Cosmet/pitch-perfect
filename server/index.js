@@ -7,10 +7,11 @@ const session = require('express-session')
 const passport = require('passport')
 const SequelizeStore = require('connect-session-sequelize')(session.Store)
 const db = require('./db')
-const sessionStore = new SequelizeStore({db})
+const sessionStore = new SequelizeStore({ db })
 const PORT = process.env.PORT || 8080
 const app = express()
 const socketio = require('socket.io')
+const ExpressPeerServer = require('peer').ExpressPeerServer
 module.exports = app
 
 /**
@@ -51,6 +52,17 @@ const createApp = () => {
   app.use(passport.initialize())
   app.use(passport.session())
 
+  //
+  const options = {
+    debug: true
+  }
+
+  const peerServer = require('http').createServer(app);
+
+  app.use('/peerjs', ExpressPeerServer(peerServer, options));
+
+  peerServer.listen(9000);
+
   // auth and api routes
   app.use('/auth', require('./auth'))
   app.use('/api', require('./api'))
@@ -58,16 +70,16 @@ const createApp = () => {
   // static file-serving middleware
   app.use(express.static(path.join(__dirname, '..', 'public')))
 
-  // any remaining requests with an extension (.js, .css, etc.) send 404
-  .use((req, res, next) => {
-    if (path.extname(req.path).length) {
-      const err = new Error('Not found')
-      err.status = 404
-      next(err)
-    } else {
-      next()
-    }
-  })
+    // any remaining requests with an extension (.js, .css, etc.) send 404
+    .use((req, res, next) => {
+      if (path.extname(req.path).length) {
+        const err = new Error('Not found')
+        err.status = 404
+        next(err)
+      } else {
+        next()
+      }
+    })
 
   // sends index.html
   app.use('*', (req, res) => {
