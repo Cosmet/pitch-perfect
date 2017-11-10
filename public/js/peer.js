@@ -1424,7 +1424,7 @@ var RTCPeerConnection = require('./adapter').RTCPeerConnection;
 var util = {
   noop: function() {},
 
-  CLOUD_HOST: '0.peerjs.com',
+  CLOUD_HOST: 'https://pitch-perfect-practice.herokuapp.com',
   CLOUD_PORT: 9000,
 
   // Browsers that need chunking:
@@ -2873,7 +2873,7 @@ var BinaryPack = require('js-binarypack');
 
 var util = {
   debug: false,
-  
+
   inherits: function(ctor, superCtor) {
     ctor.super_ = superCtor;
     ctor.prototype = Object.create(superCtor.prototype, {
@@ -2895,7 +2895,7 @@ var util = {
   },
   pack: BinaryPack.pack,
   unpack: BinaryPack.unpack,
-  
+
   log: function () {
     if (util.debug) {
       var copy = [];
@@ -2917,7 +2917,7 @@ var util = {
     function setZeroTimeoutPostMessage(fn) {
       timeouts.push(fn);
       global.postMessage(messageName, '*');
-    }		
+    }
 
     function handleMessage(event) {
       if (event.source == global && event.data == messageName) {
@@ -2936,7 +2936,7 @@ var util = {
     }
     return setZeroTimeoutPostMessage;
   }(this)),
-  
+
   blobToArrayBuffer: function(blob, cb){
     var fr = new FileReader();
     fr.onload = function(evt) {
