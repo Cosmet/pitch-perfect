@@ -35,7 +35,7 @@ const Video = (props) => {
 
   let myStream;
   const mediaStream = navigator.mediaDevices.getUserMedia({
-    audio: false,
+    audio: true,
     video: {
       width: 640,
       height: 480,
