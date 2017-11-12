@@ -1,0 +1,56 @@
+@import './_variables.scss';
+
+.feedback-received-wrapper {
+  position: fixed;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
+  background: $tertiary;
+
+  h2 {
+    font-size: 3rem;
+    color: #444;
+  }
+
+  .feedback-received {
+    display: flex;
+    align-items: center;
+    position: relative;
+    background: white;
+    width: 60vw;
+    height: 50vh;
+    border: 1px solid $tertiary-dark;
+    border-radius: 5px;
+
+    img {
+      height: 25vh;
+      margin-left: 10rem;
+      padding-right: 10rem;
+      border-right: 2px solid $tertiary;
+    }
+
+    p {
+      color: #444;
+      font-size: 1.8rem;
+      margin: 0 10rem;
+    }
+  }
+
+  button {
+    position: absolute;
+    left: 1rem;
+    top: 1rem;
+    font-size: 5rem;
+    background: none;
+    color: $secondary;
+  }
+
+  button:hover {
+    color: $secondary-darker;
+  }
+}

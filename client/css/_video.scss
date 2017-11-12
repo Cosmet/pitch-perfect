@@ -1,6 +1,8 @@
 @import './_variables.scss';
 .video {
   position: fixed;
+  display: flex;
+  justify-content: space-between;
   top: 0;
   left: 0;
   background: $primary;
@@ -24,34 +26,135 @@ video {
 
 .small-video {
   position: absolute;
+  top: 4px;
+  left: 4px;
   height: 120px;
   width: 160px;
   z-index: 5;
+  border: 1px solid white;
+}
+
+.controls {
+  display: flex;
+}
+
+.close-btn-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: $secondary-darker;
+  border-radius: 5px 0 0 5px;
+  flex-basis: 10%;
+}
+
+.close-btn-container:hover {
+  background: $secondary;
 }
 
 #stop-video-btn {
-  position: absolute;
-  top: 0rem;
-  right: 2rem;
-  font-size: 10rem;
-  color: $secondary-darker;
-  text-shadow: 0.5rem 0.5rem 1rem $primary-darker;
-
-  :hover {
-    color: $secondary;
-  }
+  font-size: 3rem;
+  color: white;
+  padding: 1rem;
 }
+
 
 #connect-video-btn {
   font-size: 3rem;
   font-family: $font-family;
   color: $primary;
   background: white;
-  border-radius: 5px;
+  border-radius: 0 5px 5px 0;
   padding: 1rem;
-
+  flex-basis: 90%;
 
   .fa-spinner {
     -webkit-animation: rotation 2s infinite linear;
   }
+}
+
+#connect-video-btn:hover {
+  background: $tertiary;
+}
+
+.left,
+.middle,
+.right {
+  flex-basis: 29.5%;
+  max-width: 30vw;
+  margin: 1rem;
+  flex-shrink: 1;
+}
+
+.middle {
+  height: 40vh;
+  align-self: flex-end;
+  color: white;
+  border: 1px solid $primary-dark;
+
+
+  h2 {
+    font-size: 4rem;
+    text-align: center;
+    margin: 0 10rem;
+    padding: 0 0 1rem 0;
+    border-bottom: 1px solid $primary-dark;
+    font-family: 'Indie Flower', 'Comfortaa', sans-serif;
+  }
+
+  ul {
+    margin: 3rem 5rem;
+    font-size: 2rem;
+    font-family: $font-family;
+
+    li {
+      margin: 2rem 0;
+    }
+  }
+}
+
+.prompt {
+  padding: 1rem;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid $primary-dark;
+  font-size: 1.5rem;
+  padding: 5rem;
+  margin-top: 5rem;
+
+  h2 {
+    font-size: 2rem;
+    text-align: center;
+    padding: 0 0 1rem 0;
+    border-bottom: 1px solid $primary-dark;
+    font-family: $font-family;
+    color: $primary-dark;
+  }
+}
+
+
+.speech-bubble {
+  position: relative;
+  bottom: -50.5rem;
+  left: 50rem;
+  background: $tertiary;
+  color: $primary-darker;
+  font-size: 1.2rem;
+  font-family: $font-family;
+  padding: 0.5em;
+	border-radius: 5px;
+}
+
+.speech-bubble:after {
+	content: '';
+	position: absolute;
+	top: 0;
+	left: 50%;
+	width: 0;
+	height: 0;
+	border: 0.594em solid transparent;
+	border-bottom-color: $tertiary;
+	border-top: 0;
+	border-left: 0;
+	margin-left: -0.297em;
+	margin-top: -0.594em;
 }

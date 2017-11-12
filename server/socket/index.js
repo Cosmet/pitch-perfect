@@ -34,5 +34,9 @@ module.exports = (io) => {
         peerSessions[socket.id].connected = true;
       }
     })
+
+    socket.on('feedback-to-user', ({ feedback, rating, socketId }) => {
+      io.to(socketId).emit('feedback', { feedback, rating });
+    })
   })
 }

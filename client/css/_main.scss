@@ -1,5 +1,5 @@
 @import './_variables.scss';
-@import url('https://fonts.googleapis.com/css?family=Comfortaa');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa|Indie+Flower');
 
 button {
   background: none;
@@ -12,8 +12,14 @@ button {
   background: $primary;
 }
 
+a,
+button,
+h1, h2, h3, h4 {
+  font-family: $font-family;
+}
+
 .hero {
-  margin: 10rem;
+
 }
 
 nav {
@@ -33,7 +39,15 @@ nav {
     margin-left: 1rem;
     font-size: 3rem;
     color: white;
-    font-family: Comfortaa, sans-serif;
+    font-family: $font-family;
+  }
+
+  a {
+    margin: 0;
+  }
+
+  a:hover h1 {
+    color: $tertiary;
   }
 }
 
@@ -47,7 +61,7 @@ nav {
   }
 
   a:hover {
-    color: $primary-darker;
+    color: $tertiary;
   }
 }
 

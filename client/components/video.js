@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import socket from '../socket'
+import { FeedbackForm } from './'
 
 import '../css/_video.scss'
 
@@ -30,7 +31,8 @@ const Video = (props) => {
   const { peerId, connectVideo, stopVideo, swapVideo } = props;
   theirPeerId = peerId;
 
-  const conn = peerId.length && peer.connect(peerId);
+  peerId.length && peer.connect(peerId);
+
   let myStream;
   const mediaStream = navigator.mediaDevices.getUserMedia({
     audio: false,
@@ -40,7 +42,7 @@ const Video = (props) => {
       frameRate: { ideal: 60, max: 60 }
     }
   });
-  console.log('my media stream', mediaStream)
+
 
   mediaStream.then((data) => {
     myStream = data;
@@ -49,13 +51,6 @@ const Video = (props) => {
     peer.on('connection', (conn) => {
 
       conn.on('open', () => {
-        // Receive messages
-        conn.on('data', (data) => {
-        });
-
-        // Send messages
-        conn.send('Hello!');
-
         const call = peer.call(theirPeerId, data);
         peer.on('call', (callee) => {
           // Answer the call, providing our mediaStream
@@ -63,12 +58,11 @@ const Video = (props) => {
         });
 
         call.on('stream', (stream) => {
-          // `stream` is the MediaStream of the remote peer.
-          // Here you'd add it to an HTML video/canvas element.
           document.getElementById("peer-video").srcObject = stream;
           document.getElementById('connect-video-btn').innerHTML = "Connected";
         });
       });
+
     });
   })
     .catch(console.error)
@@ -76,15 +70,50 @@ const Video = (props) => {
 
   return (
     <div className="video">
-      <div>
-        <button id="connect-video-btn" onClick={connectVideo}>I'm Ready!</button>
+      <div className="left">
+        <div className="controls">
+          <div className="close-btn-container">
+            <a
+              id="stop-video-btn"
+              onClick={() => stopVideo(myStream)}
+              href="/">
+              <i className="fa fa-times" aria-hidden="true"></i>
+            </a>
+          </div>
+          <button id="connect-video-btn" onClick={connectVideo}>
+            I'm Ready!
+          </button>
+        </div>
+
+        <div className="prompt">
+        <h2>Your Pitch</h2>
+          <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean luctus placerat pharetra. Ut vel justo urna. In iaculis fringilla enim, vel blandit dolor fermentum vitae. In urna magna, suscipit eget tortor vitae, sodales elementum dui. Nullam lobortis turpis id enim sodales aliquam. Donec ac dui tristique, molestie velit non, dignissim ante. Praesent commodo quis nulla a interdum.
+          <br />
+          <br />
+          Praesent interdum mi orci, nec semper purus tincidunt sed. Sed quis fermentum magna. Praesent eu erat eget nisl molestie lacinia. Morbi in sapien metus. Nam ultricies fringilla ligula a tincidunt. Vivamus vel viverra sapien, in vestibulum lacus. Donec aliquam orci id enim malesuada vestibulum.
+          <br />
+          <br />
+          Praesent pulvinar orci vitae velit eleifend, efficitur finibus diam cursus. Quisque in sapien rhoncus, luctus nulla ac, dapibus est. Sed pretium dui purus, sit amet facilisis turpis sagittis a. Etiam feugiat arcu ut libero ultrices condimentum. Quisque ut volutpat ligula, non laoreet arcu. Donec at elit vel massa lobortis pellentesque. Curabitur pretium, nisl quis auctor dictum, elit mauris facilisis lectus, ut mollis nisl ipsum tempus risus. Aenean et iaculis dolor. Donec vel placerat metus. Nunc maximus justo iaculis convallis egestas. Cras imperdiet purus in libero malesuada cursus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Sed quis enim pellentesque, ultricies diam sed, interdum eros. Nulla sed est lacus.
+          </p>
+        </div>
       </div>
-      <button id="stop-video-btn" onClick={() => stopVideo(myStream)}>
-        <i className="fa fa-times" aria-hidden="true"></i>
-      </button>
+      <div className="middle">
+        <h2>Tips</h2>
+        <ul>
+          <li>Remember to make eye contact!</li>
+          <li>Keep a steady pace.</li>
+          <li>Smile!</li>
+        </ul>
+      </div>
+      <div className="right">
+        <FeedbackForm />
+      </div>
       <div id="video-container" className="video-feed">
-        <video onClick={swapVideo} className="small-video" id="my-video" autoPlay></video>
+        <video onClick={swapVideo} className="small-video" id="my-video" autoPlay muted="muted"></video>
         <video onClick={swapVideo} id="peer-video" autoPlay></video>
+        <span className="speech-bubble">Click Me!</span>
+
       </div>
     </div>
   )
@@ -95,11 +124,11 @@ const Video = (props) => {
  */
 const mapState = (state) => {
   return {
-    peerId: state.peer,
+    peerId: state.peer.peerId,
   }
 }
 
-const mapDispatch = (dispatch) => {
+const mapDispatch = (dispatch, ownProps) => {
   return {
     connectVideo(peer) {
       socket.emit('connection', { id: myPeerId });
@@ -107,19 +136,18 @@ const mapDispatch = (dispatch) => {
       const connecting = document.createElement('i');
       connecting.className = 'fa fa-spinner';
       connecting.setAttribute('aria-hidden', true);
-      connectBtn.innerHTML = 'Connecting '
+      connectBtn.innerHTML = 'Searching '
       connectBtn.appendChild(connecting);
       connectBtn.setAttribute('disabled', true);
     },
     stopVideo(myStream) {
-      myStream.getTracks().forEach(track => track.stop())
+      myStream.getTracks().forEach(track => track.stop());
     },
     swapVideo(e) {
       const targetVidId = e.target.id;
       const classList = e.target.classList;
       const myVid = document.getElementById('my-video');
       const theirVid = document.getElementById('peer-video');
-      console.log(myVid, theirVid)
       if (targetVidId === 'my-video' && classList.length === 0) {
         myVid.classList.add('small-video');
         theirVid.classList.remove('small-video');

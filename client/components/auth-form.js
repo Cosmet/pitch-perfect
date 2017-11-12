@@ -1,31 +1,36 @@
 import React from 'react'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import {auth} from '../store'
+import { auth } from '../store'
+
+import '../css/_auth-form.scss'
+
 
 /**
  * COMPONENT
  */
 const AuthForm = (props) => {
-  const {name, displayName, handleSubmit, error} = props
+  const { name, displayName, handleSubmit, error } = props
 
   return (
-    <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="email"><small>Email</small></label>
-          <input name="email" type="text" />
-        </div>
-        <div>
-          <label htmlFor="password"><small>Password</small></label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <button type="submit">{displayName}</button>
-        </div>
-        {error && error.response && <div> {error.response.data} </div>}
-      </form>
-      <a href="/auth/google">{displayName} with Google</a>
+    <div className="auth-form-wrapper">
+      <div className="auth-form">
+        <form onSubmit={handleSubmit} name={name}>
+          <div>
+            <label htmlFor="email"><small>Email</small></label>
+            <input name="email" type="text" />
+          </div>
+          <div>
+            <label htmlFor="password"><small>Password</small></label>
+            <input name="password" type="password" />
+          </div>
+          <div>
+            <button type="submit">{displayName}</button>
+          </div>
+          {error && error.response && <div> {error.response.data} </div>}
+        </form>
+        <a href="/auth/google"><i className="fa fa-google" aria-hidden="true"></i> {displayName} with Google</a>
+      </div>
     </div>
   )
 }
@@ -55,7 +60,7 @@ const mapSignup = (state) => {
 
 const mapDispatch = (dispatch) => {
   return {
-    handleSubmit (evt) {
+    handleSubmit(evt) {
       evt.preventDefault()
       const formName = evt.target.name
       const email = evt.target.email.value

@@ -26,7 +26,7 @@ const Main = (props) => {
             <span></span>
             <span></span>
           </div>
-          <h1>Pitch Perfect</h1>
+          <Link to="/"><h1>Pitch Perfect</h1></Link>
         </div>
         {
           isLoggedIn
