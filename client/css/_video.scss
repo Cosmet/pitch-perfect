@@ -24,6 +24,39 @@ video {
   background: rgba(255, 255, 255, 0.5)
 }
 
+@media screen and (max-width: 1600px) and (min-width: 1230px) {
+  video {
+    height: 360px;
+    width: 480px;
+  }
+
+  .video-feed {
+    left: calc(50% - 240px);
+  }
+}
+
+@media screen and (max-width: 1230px) and (min-width: 840px) {
+  video {
+    height: 240px;
+    width: 320px;
+  }
+
+  .video-feed {
+    left: calc(50% - 160px);
+  }
+}
+
+@media screen and (max-width: 840px) {
+  video {
+    height: 120px;
+    width: 160px;
+  }
+
+  .video-feed {
+    left: calc(50% - 80px);
+  }
+}
+
 .small-video {
   position: absolute;
   top: 4px;
